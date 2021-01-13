@@ -5,6 +5,7 @@
  */
 package galerie.entity;
 
+import java.util.*;
 import javax.persistence.*;
 import lombok.*;
 
@@ -34,4 +35,16 @@ public class Tableau {
     @NonNull
     private Integer hauteur;
     
+    // relation tableau - exposition
+    @ManyToMany (mappedBy = "oeuvres")
+    private List<Exposition> accrochage = new LinkedList<>(); 
+    
+    // relation tableau - artiste
+    @ManyToOne
+    private Artist auteur; 
+    
+    // relation tableau - Transaction
+    @OneToOne (mappedBy="oeuvre")
+    private Transaction vendu;
+            
 }

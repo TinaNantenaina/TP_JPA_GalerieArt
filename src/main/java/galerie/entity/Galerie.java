@@ -21,6 +21,6 @@ public class Galerie {
     private String adresse;
     
     // TODO : Mettre en oeuvre la relation oneToMany vers Exposition
-    @OneToMany(mappedBy ="Galerie")
+    @OneToMany(mappedBy ="organisateur")
     private List<Exposition> exposition; 
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package galerie.entity;
+import java.util.*;
 import javax.persistence.*;
 import lombok.*;
 
@@ -25,5 +26,10 @@ public class Personne {
     @Column(unique=true)
     @NonNull
     private String adresse;
+    
+    // relation Personne - Transaction
+    @OneToMany (mappedBy="client")
+    @NonNull
+    private List<Transaction> achats = new LinkedList<>(); 
     
 }

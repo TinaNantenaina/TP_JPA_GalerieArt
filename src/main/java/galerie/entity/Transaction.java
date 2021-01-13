@@ -27,4 +27,19 @@ public class Transaction {
     @NonNull
     private Float prixVente;
     
+    // relation Transaction - tableau
+    @OneToOne
+    @NonNull
+    private Tableau oeuvre;
+    
+    // relation Transaction - Personne
+    @ManyToOne
+    private Personne client;
+    
+    // relation transaction - Exposition
+    @ManyToOne
+    private Exposition lieuDeVente;
+    
+    
+    
 }
