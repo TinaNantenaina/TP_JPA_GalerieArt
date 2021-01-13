@@ -32,4 +32,13 @@ public class Personne {
     @NonNull
     private List<Transaction> achats = new LinkedList<>(); 
     
+    // implementation methode budgetArt
+    public float budgetArt(int annee){
+        float ba = 0;
+        for(Transaction transaction : achats){
+            if(transaction.getVenduLe().getYear()== annee)
+                ba+= transaction.getPrixVente();
+        }
+        return ba;
+    }   
 }

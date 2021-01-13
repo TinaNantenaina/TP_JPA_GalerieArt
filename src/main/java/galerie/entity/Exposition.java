@@ -45,9 +45,12 @@ public class Exposition {
     @OneToMany (mappedBy="lieuDeVente")
     private List<Transaction> ventes = new LinkedList<>(); 
     
-
-    
-    
-    
-    
+    // implémentation de la méthode CA
+    public float chiffreAffaire(){
+        float ca = 0;
+        for(Transaction transaction : ventes){
+            ca+= transaction.getPrixVente();
+        }
+        return ca;
+    } 
 }
