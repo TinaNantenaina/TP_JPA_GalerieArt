@@ -18,6 +18,7 @@ public class GalerieRepositoryTest {
 
     @Autowired
     private GalerieRepository galerieDAO;
+    private Galerie galerie;
 
     @Test
     @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
@@ -28,4 +29,14 @@ public class GalerieRepositoryTest {
         assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 1 galerie" );
     }
 
+    @Test
+    @Sql("test-data.sql")
+    public void insertDansGalerie(){
+        galerie = new Galerie("galerie2", "adresse2");
+        log.info("On insere un nouveau galerie");
+        galerieDAO.save(galerie);
+        long nombre = galerieDAO.count();
+        assertEquals(2, nombre, "on doit trouver 2 galerie");
+    }
+    
 }
