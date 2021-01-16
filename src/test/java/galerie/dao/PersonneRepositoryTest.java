@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
 /**
  *
@@ -22,11 +23,12 @@ public class PersonneRepositoryTest {
     private PersonneRepository personneDAO;
     
     @Test
+    @Sql("test-personne-data.sql")
     public void onCompteLesEnregistrements(){
         log.info("on compte les enregistrements de la table personne");
-        int combienDansLeJeuTest = 2;
+        int combienDansLeJeuTest = 1;
         long nombre = personneDAO.count();
-        assertEquals(combienDansLeJeuTest, nombre, "on doit trouver 2 personne");
+        assertEquals(combienDansLeJeuTest, nombre, "on doit trouver 1 personne");
     }
     
 }

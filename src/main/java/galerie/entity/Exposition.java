@@ -34,7 +34,6 @@ public class Exposition {
     
     // relation Galerie - exposition
     @ManyToOne
-    @NonNull
     private Galerie organisateur;
     
     // relation exposition _ tableau

@@ -5,6 +5,10 @@
  */
 package galerie.dao;
 
+import galerie.entity.Exposition;
+import galerie.entity.Galerie;
+import java.time.LocalDate;
+import java.util.Date;
 import lombok.extern.log4j.Log4j2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -22,15 +26,16 @@ public class ExpositionRepositoryTest {
     @Autowired
     private ExpositionRepository expositionDAO;
     
+    
     @Test
-    @Sql("test-data.sql")
+    @Sql("test-galerie-data.sql")
+    @Sql("test-exposition-data.sql")
     public void onCompteLesEnregistrement(){
         log.info("on compte les enregistrement de la table exposition");
-        int combienDansLeJeuDeTest = 3;
+        int combienDansLeJeuDeTest = 1;
         long nombre = expositionDAO.count();
-        assertEquals(combienDansLeJeuDeTest, nombre, "on doit trouver 3 expositions");
+        assertEquals(combienDansLeJeuDeTest, nombre, "on doit trouver 1 expositions");
                            
     }
-    
-    
+  
 }

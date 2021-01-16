@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 import galerie.dao.GalerieRepository;
+import org.junit.jupiter.api.*;
 
 @Log4j2 // Génère le 'logger' pour afficher les messages de trace
 @DataJpaTest
@@ -18,25 +19,31 @@ public class GalerieRepositoryTest {
 
     @Autowired
     private GalerieRepository galerieDAO;
-    private Galerie galerie;
+    private Galerie galerieA, galerieB;
+    
+    @BeforeEach
+    public void setUp(){
+        galerieA = new Galerie("Saatchi", "Londre");
+        galerieB = new Galerie();
+    }
+    
 
     @Test
-    @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
+    @Sql("test-galerie-data.sql") // On peut charger des donnnées spécifiques pour un test
     public void onSaitCompterLesEnregistrements() {
         log.info("On compte les enregistrements de la table 'Galerie'");
-        int combienDansLeJeuDeTest = 1; 
+        int combienDansLeJeuDeTest = 2; 
         long nombre = galerieDAO.count();
-        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 1 galerie" );
+        assertEquals(combienDansLeJeuDeTest, nombre, "On doit trouver 2 galerie" );
     }
 
     @Test
-    @Sql("test-data.sql")
+    @Sql("test-galerie-data.sql")
     public void insertDansGalerie(){
-        galerie = new Galerie("galerie2", "adresse2");
         log.info("On insere un nouveau galerie");
-        galerieDAO.save(galerie);
+        galerieDAO.save(galerieA);
         long nombre = galerieDAO.count();
-        assertEquals(2, nombre, "on doit trouver 2 galerie");
+        assertEquals(3, nombre, "on doit trouver 3 galerie");
     }
     
 }
