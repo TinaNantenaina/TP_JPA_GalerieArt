@@ -5,6 +5,8 @@
  */
 package galerie.dao;
 
+import galerie.entity.Personne;
+import java.util.List;
 import lombok.extern.log4j.Log4j2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -23,12 +25,18 @@ public class PersonneRepositoryTest {
     private PersonneRepository personneDAO;
     
     @Test
-    @Sql("test-personne-data.sql")
+   // @Sql("test-personne-data.sql")
     public void onCompteLesEnregistrements(){
         log.info("on compte les enregistrements de la table personne");
-        int combienDansLeJeuTest = 1;
+         int combienDansLeJeuTest = 1;
         long nombre = personneDAO.count();
         assertEquals(combienDansLeJeuTest, nombre, "on doit trouver 1 personne");
     }
     
+    @Test
+    public void afficheListEnregistrement(){
+        log.info("on affiche la liste des enregistrement de la classe personne");
+        List<Personne> personne = personneDAO.findAll();
+        log.info("Liste des enregistrements : {}", personne);
+    }
 }

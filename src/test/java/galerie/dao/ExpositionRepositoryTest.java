@@ -9,6 +9,7 @@ import galerie.entity.Exposition;
 import galerie.entity.Galerie;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import lombok.extern.log4j.Log4j2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -28,14 +29,19 @@ public class ExpositionRepositoryTest {
     
     
     @Test
-    @Sql("test-galerie-data.sql")
-    @Sql("test-exposition-data.sql")
+    //@Sql("test-exposition-data.sql")
     public void onCompteLesEnregistrement(){
         log.info("on compte les enregistrement de la table exposition");
-        int combienDansLeJeuDeTest = 1;
+        int combienDansLeJeuDeTest = 4;
         long nombre = expositionDAO.count();
-        assertEquals(combienDansLeJeuDeTest, nombre, "on doit trouver 1 expositions");
+        assertEquals(combienDansLeJeuDeTest, nombre, "on doit trouver 4 expositions");
                            
     }
   
+    @Test
+    public void afficherListeEnregistrelent(){
+        log.info("On affiche la liste des enregistrement de la table exposition");
+        List<Exposition> exposition = expositionDAO.findAll();
+        log.info("liste des enregistrements : {}", exposition);
+    }
 }
